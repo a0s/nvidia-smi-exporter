@@ -1,0 +1,4 @@
+uuid, fan.speed [%], temperature.gpu, power.draw [W], power.limit [W], utilization.gpu [%], utilization.memory [%], memory.used [MiB], memory.total [MiB], clocks.current.graphics [MHz], clocks.max.graphics [MHz], clocks.current.sm [MHz], clocks.current.memory [MHz], clocks.max.memory [MHz]
+GPU-20fe89bc-c8ef-5a9f-078e-efa3324d790b, 63 %, 73, 213.07 W, 216.00 W, 100 %, 87 %, 754 MiB, 8119 MiB, 1987 MHz, 1999 MHz, 1987 MHz, 5130 MHz, 5005 MHz
+GPU-68988cf6-8de9-6585-a263-d2e3ea96b75a, 81 %, 67, 187.04 W, 216.00 W, 100 %, 90 %, 586 MiB, 4043 MiB, 1453 MHz, 1606 MHz, 1453 MHz, 3004 MHz, 3505 MHz
+GPU-90e3dab0-b59d-8bf6-d909-d4fab8d2f29b, 55 %, 68, 206.44 W, 216.00 W, 100 %, 87 %, 641 MiB, 8119 MiB, 1949 MHz, 1936 MHz, 1949 MHz, 5130 MHz, 5005 MHz
