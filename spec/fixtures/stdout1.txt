@@ -1,0 +1,3 @@
+uuid, memory.used [MiB], utilization.gpu [%], temperature.gpu, power.draw [W], clocks.current.sm [MHz]
+GPU-d86c351b-8f94-33ab-3b97-accb421fef6d, 754 MiB, 100 %, 71, 217.24 W, 1949 MHz
+GPU-683c6e09-3969-31a5-b7ca-cc88252b7fce, 641 MiB, 100 %, 71, 208.30 W, 2025 MHz
