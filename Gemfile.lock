@@ -7,14 +7,13 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     awesome_print (1.8.0)
-    backports (3.11.3)
     concurrent-ruby (1.0.5)
     diff-lcs (1.3)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     minitest (5.11.3)
-    multi_json (1.13.1)
     mustermann (1.0.2)
+    puma (3.11.4)
     rack (2.0.5)
     rack-protection (2.0.3)
       rack
@@ -36,14 +35,6 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.3)
       tilt (~> 2.0)
-    sinatra-contrib (2.0.3)
-      activesupport (>= 4.0.0)
-      backports (>= 2.8.2)
-      multi_json
-      mustermann (~> 1.0)
-      rack-protection (= 2.0.3)
-      sinatra (= 2.0.3)
-      tilt (>= 1.3, < 3)
     thread_safe (0.3.6)
     tilt (2.0.8)
     tzinfo (1.2.5)
@@ -55,9 +46,9 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   awesome_print
+  puma
   rspec
   sinatra
-  sinatra-contrib
 
 BUNDLED WITH
    1.16.2

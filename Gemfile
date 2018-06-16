@@ -2,6 +2,6 @@ source 'https://rubygems.org'
 
 gem 'awesome_print'
 gem 'sinatra'
-gem 'sinatra-contrib'
+gem 'puma'
 gem 'rspec'
 gem 'activesupport'
