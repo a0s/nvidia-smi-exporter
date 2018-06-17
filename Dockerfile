@@ -12,7 +12,6 @@ COPY \
     Gemfile \
     Gemfile.lock \
     application.rb \
-    environment.rb \
     exporter.rb \
     nvidia_smi.rb \
     ./
