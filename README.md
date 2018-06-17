@@ -1,3 +1,8 @@
+# NVidia SMI Exporter
+Another one. Now, with respecting of GPU UUID.
+
+![NVidia SMI Exporter with Grafana](https://user-images.githubusercontent.com/418868/41509784-db9ee64a-7261-11e8-9bbb-556967876649.jpg)
+
 ## Run in Docker container
 
 Build image 
