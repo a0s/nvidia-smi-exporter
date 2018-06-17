@@ -27,7 +27,7 @@ class Exporter < Sinatra::Base
 
     data_hash = nvidia_smi.parse(data_str)
 
-    format_prometheus(data_hash)
+    nvidia_smi.format_prometheus(data_hash)
   end
 
   get '/ping' do
