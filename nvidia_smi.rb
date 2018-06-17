@@ -2,9 +2,9 @@ require 'open3'
 require 'active_support/core_ext/object/blank'
 
 class NvidiaSMI
-  attr_reader :binary_path, :name_prefix
+  attr_reader :binary_path, :name_prefix, :query_list
 
-  def initialize(binary_path: nil, name_prefix: nil)
+  def initialize(binary_path: nil, name_prefix: nil, query_list: nil)
     if binary_path.present?
       @binary_path = binary_path
     else
@@ -13,9 +13,14 @@ class NvidiaSMI
     end
 
     @name_prefix = name_prefix
+
+    if query_list == %w() || query_list == %w(uuid)
+      fail('NVIDIA_SMI_EXPORTER_QUERY is empty')
+    end
+    @query_list = query_list
   end
 
-  def query(query_list = [])
+  def query(query_list = @query_list)
     unless @binary_path.present?
       fail("Don't know path to nvidia-smi binary")
     end
