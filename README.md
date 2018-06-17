@@ -1,4 +1,5 @@
 ```bash
+docker build --tag nvidia-smi-exporter .
 docker run --rm \
     -p 9451:9451 \
     --mount type=bind,src="$(which nvidia-smi)",dst=/usr/bin/nvidia-smi \
