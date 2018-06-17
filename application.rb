@@ -18,7 +18,6 @@ class Application
       clocks.max.memory
       clocks.max.sm
       fan.speed
-      memory.free
       memory.total
       memory.used
       power.draw
