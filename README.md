@@ -23,7 +23,6 @@ nvidia_smi_clocks_max_graphics_hz{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 1
 nvidia_smi_clocks_max_memory_hz{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 5005000000
 nvidia_smi_clocks_max_sm_hz{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 1999000000
 nvidia_smi_fan_speed{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 0.63
-nvidia_smi_memory_free_bytes{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 7722762240
 nvidia_smi_memory_total_bytes{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 8513388544
 nvidia_smi_memory_used_bytes{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 790626304
 nvidia_smi_power_draw_watts{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 65.27
