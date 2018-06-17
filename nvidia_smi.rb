@@ -95,6 +95,6 @@ class NvidiaSMI
         output_list << "#{@name_prefix}#{name}{uuid=\"#{uuid}\"} #{value}"
       end
     end
-    output_list.join("\n")
+    output_list.join("\n") + "\n"
   end
 end
