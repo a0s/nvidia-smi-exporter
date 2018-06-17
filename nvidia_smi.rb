@@ -1,22 +1,11 @@
-require 'open3'
 require 'active_support/core_ext/object/blank'
 
 class NvidiaSMI
   attr_reader :binary_path, :name_prefix, :query_list
 
-  def initialize(binary_path: nil, name_prefix: nil, query_list: nil)
-    if binary_path.present?
-      @binary_path = binary_path
-    else
-      stdout_str, status = Open3.capture2('which nvidia-smi')
-      @binary_path = stdout_str.strip if status.exitstatus.zero?
-    end
-
+  def initialize(binary_path:, query_list:, name_prefix: nil)
+    @binary_path = binary_path
     @name_prefix = name_prefix
-
-    if query_list == %w() || query_list == %w(uuid)
-      fail('NVIDIA_SMI_EXPORTER_QUERY is empty')
-    end
     @query_list = query_list
   end
 

@@ -1,9 +1,9 @@
-require_relative 'environment'
+require 'sinatra'
 
 class Exporter < Sinatra::Base
   set :traps, false
   set :server, :puma
-  set :port, ENV['NVIDIA_SMI_EXPORTER_PORT']
+  set :port, ENV['NVIDIA_SMI_EXPORTER_PORT'].to_i
   set :bind, ENV['NVIDIA_SMI_EXPORTER_HOST']
   set :show_exceptions, false
 
