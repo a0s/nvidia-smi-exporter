@@ -36,7 +36,11 @@ nvidia_smi_utilization_memory{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 0.0
 If case you don't want to use `--privileged` option you should use `--device` option to expose `/dev/nvidiactl` and `/dev/nvidia0`, `/dev/nvidia1`, etc (all GPU what you need to monitoring) into docker container
 
 ```bash
-docker run --rm --device /dev/nvidiactl:/dev/nvidiactl --device /dev/nvidia0:/dev/nvidia0 -p 9451:9451 nvidia-smi-exporter
+docker run --rm \
+  --device /dev/nvidiactl:/dev/nvidiactl \
+  --device /dev/nvidia0:/dev/nvidia0 \
+  --device /dev/nvidia1:/dev/nvidia1 \
+  -p 9451:9451 nvidia-smi-exporter
 ```
 
 ## Runtime parameters
