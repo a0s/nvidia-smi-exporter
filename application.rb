@@ -6,7 +6,7 @@ class Application
   end
 
   def run!
-    ENV['NVIDIA_SMI_EXPORTER_PORT'] ||= '9451'
+    ENV['NVIDIA_SMI_EXPORTER_PORT'] ||= '9454'
     ENV['NVIDIA_SMI_EXPORTER_HOST'] ||= '0.0.0.0'
     ENV['NVIDIA_SMI_EXPORTER_NAME_PREFIX'] ||= 'nvidia_smi_'
     ENV['NVIDIA_SMI_EXPORTER_QUERY'] ||= %W(

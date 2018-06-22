@@ -12,14 +12,14 @@ docker build --tag nvidia-smi-exporter .
 
 Run container
 ```bash
-docker run --rm --privileged -p 9451:9451 nvidia-smi-exporter
+docker run --rm --privileged -p 9454:9454 nvidia-smi-exporter
 ```
 
 Test
 ```bash
-curl localhost:9451/ping
+curl localhost:9454/ping
 OK
-curl localhost:9451/metrics
+curl localhost:9454/metrics
 nvidia_smi_clocks_current_graphics_hz{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 1974000000
 nvidia_smi_clocks_current_memory_hz{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 5130000000
 nvidia_smi_clocks_current_sm_hz{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 1974000000
@@ -44,7 +44,7 @@ docker run --rm \
   --device /dev/nvidiactl:/dev/nvidiactl \
   --device /dev/nvidia0:/dev/nvidia0 \
   --device /dev/nvidia1:/dev/nvidia1 \
-  -p 9451:9451 nvidia-smi-exporter
+  -p 9454:9454 nvidia-smi-exporter
 ```
 
 ## Runtime parameters
@@ -53,6 +53,6 @@ There are several environment variables to setting runtime parameters:
 
 - `NVIDIA_SMI_EXPORTER_BINARY` - path to nvidia-smi executive binary, default: `$(which nvidia-smi)`
 - `NVIDIA_SMI_EXPORTER_QUERY` - comma-separated list of query parameters to nvidia-smi, default: `clocks.current.graphics,clocks.current.memory,clocks.current.sm,clocks.current.video,clocks.max.graphics,clocks.max.memory,clocks.max.sm,fan.speed,memory.total,memory.used,power.draw,power.limit,temperature.gpu,utilization.gpu,utilization.memory`
-- `NVIDIA_SMI_EXPORTER_PORT` - a port where the server will be started, default: `9451`
+- `NVIDIA_SMI_EXPORTER_PORT` - a port where the server will be started, default: `9454`
 - `NVIDIA_SMI_EXPORTER_HOST` - a host where the server will be started, default: `0.0.0.0`
 - `NVIDIA_SMI_EXPORTER_NAME_PREFIX` - prefix for every parameter name in output, default: `nvidia_smi_`
