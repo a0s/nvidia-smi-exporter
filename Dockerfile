@@ -22,7 +22,7 @@ RUN \
     && wget -qO - ${NVIDIA_PUB_KEY} | apt-key add - \
     && echo ${NVIDIA_REPO} > /etc/apt/sources.list.d/cuda.list \
     && apt-get update \
-    && apt-get install -y --no-install-recommends nvidia-390-dev \
+    && apt-get install -y --no-install-recommends nvidia-410-dev \
     && rm -rf /var/lib/apt/lists/* \
     && bundle install --deployment --without test
 
