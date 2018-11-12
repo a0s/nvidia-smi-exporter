@@ -18,15 +18,14 @@ class Exporter < Sinatra::Base
   get '/metrics' do
     content_type 'text/plain'
 
-    nvidia_smi = self.class.nvidia_smi
+    nvidia_smi = NvidiaSMI.new(
+      binary_path: ENV['NVIDIA_SMI_EXPORTER_BINARY'],
+      name_prefix: ENV['NVIDIA_SMI_EXPORTER_NAME_PREFIX'],
+      query_list: ENV['NVIDIA_SMI_EXPORTER_QUERY'].to_s.split(','))
 
     data_str = nvidia_smi.query
-    if data_str.nil?
-      halt 500, 'Something wrong'
-    end
-
+    halt(500, 'Something wrong') if data_str.nil?
     data_hash = nvidia_smi.parse(data_str)
-
     nvidia_smi.format_prometheus(data_hash)
   end
 
