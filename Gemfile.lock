@@ -13,7 +13,7 @@ GEM
     minitest (5.11.3)
     mustermann (1.0.3)
     puma (3.12.1)
-    rack (2.0.7)
+    rack (2.2.3)
     rack-protection (2.0.5)
       rack
     rspec (3.8.0)
