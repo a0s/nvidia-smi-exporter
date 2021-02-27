@@ -1,21 +1,8 @@
 # NVidia SMI Exporter
 Another one. Now, with respecting of GPU UUID.
 
-![NVidia SMI Exporter with Grafana](https://user-images.githubusercontent.com/418868/41509784-db9ee64a-7261-11e8-9bbb-556967876649.jpg)
+<img src="https://user-images.githubusercontent.com/418868/41509784-db9ee64a-7261-11e8-9bbb-556967876649.jpg" width="900">
 
-## Run in Docker container
-
-Build image 
-```bash
-docker build --tag nvidia-smi-exporter .
-```
-
-Run container
-```bash
-docker run --rm --privileged -p 9454:9454 nvidia-smi-exporter
-```
-
-Test
 ```bash
 curl localhost:9454/ping
 OK
@@ -35,6 +22,18 @@ nvidia_smi_power_limit_watts{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 216.0
 nvidia_smi_temperature_gpu_celsius{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 71
 nvidia_smi_utilization_gpu{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 0.0
 nvidia_smi_utilization_memory{uuid="842ab6f5-3678-470d-b573-701a545a8ec1"} 0.0
+```
+
+## Run in Docker container
+
+Build image 
+```bash
+docker build --tag nvidia-smi-exporter .
+```
+
+Run container
+```bash
+docker run --rm --privileged -p 9454:9454 nvidia-smi-exporter
 ```
 
 If case you don't want to use `--privileged` option you should use `--device` option to expose `/dev/nvidiactl` and `/dev/nvidia0`, `/dev/nvidia1`, etc (all GPU what you need to monitoring) into docker container
