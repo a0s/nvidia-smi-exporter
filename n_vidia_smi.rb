@@ -1,6 +1,6 @@
 require 'active_support/core_ext/object/blank'
 
-class NvidiaSMI
+class NVidiaSMI
   attr_reader :binary_path, :name_prefix, :query_list
 
   def initialize(binary_path:, query_list:, name_prefix: nil)

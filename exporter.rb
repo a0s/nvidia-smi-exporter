@@ -18,7 +18,7 @@ class Exporter < Sinatra::Base
   get '/metrics' do
     content_type 'text/plain'
 
-    nvidia_smi = NvidiaSMI.new(
+    nvidia_smi = NVidiaSMI.new(
       binary_path: ENV['NVIDIA_SMI_EXPORTER_BINARY'],
       name_prefix: ENV['NVIDIA_SMI_EXPORTER_NAME_PREFIX'],
       query_list: ENV['NVIDIA_SMI_EXPORTER_QUERY'].to_s.split(','))

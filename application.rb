@@ -1,5 +1,5 @@
 require 'open3'
-require_relative 'nvidia_smi'
+require_relative 'n_vidia_smi'
 require_relative 'exporter'
 
 class Application

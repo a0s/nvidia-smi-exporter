@@ -3,8 +3,8 @@ FROM ruby:3.0.0-buster
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV NVIDIA_PUB_KEY "http://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub"
-ENV NVIDIA_REPO "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64 /"
+ENV NVIDIA_PUB_KEY "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub"
+ENV NVIDIA_REPO "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64 /"
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ COPY \
     Gemfile.lock \
     application.rb \
     exporter.rb \
-    nvidia_smi.rb \
+    n_vidia_smi.rb \
     ./
 
 RUN \
