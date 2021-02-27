@@ -17,7 +17,7 @@ jobs:
           echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
           echo ::set-output name=REPOSITORY_NAME::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')
           echo ::set-output name=FULL_VERSION::$(git describe --tags --dirty --always)
-          echo ::set-output name=TARGET_PLATFORMS::"linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6"
+          echo ::set-output name=TARGET_PLATFORMS::"linux/amd64"
       - name: Set up Docker Buildx
         id: buildx
         uses: crazy-max/ghaction-docker-buildx@v3
