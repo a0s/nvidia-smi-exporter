@@ -1,4 +1,4 @@
-FROM ruby:2.5-stretch
+FROM ruby:2.7-stretch
 MAINTAINER a0s@github.com
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
