@@ -5,9 +5,10 @@ Another one nvidia-smi data exporter for Prometheus. Now with GPU UUIDs.
 <img src="https://user-images.githubusercontent.com/418868/41509784-db9ee64a-7261-11e8-9bbb-556967876649.jpg" width="900">
 
 ```bash
-curl localhost:9454/ping
+> curl localhost:9454/ping
 OK
-curl localhost:9454/metrics
+
+> curl localhost:9454/metrics
 nvidia_smi_driver_version 460.27.04
 nvidia_smi_cuda_version 11.2
 nvidia_smi_attached_gpus 2
