@@ -82,7 +82,9 @@ There are several environment variables to setting runtime parameters:
 
 - `NVIDIA_SMI_EXPORTER_NAME_PREFIX` - prefix for every parameter name in output, default: `nvidia_smi_`
 
-- `NVIDIA_SMI_EXPORTER_MODE` - source to processing - `xml` or `csv`, default: `xml`.
-  For `NVIDIA_SMI_EXPORTER_MODE` == `csv`:
+- `NVIDIA_SMI_EXPORTER_SOURCE` - source to processing - `xml` or `csv`, default: `xml`.
+  
 
-    - `NVIDIA_SMI_EXPORTER_QUERY` - comma-separated list of query parameters to nvidia-smi, default: `clocks.current.graphics,clocks.current.memory,clocks.current.sm,clocks.current.video,clocks.max.graphics,clocks.max.memory,clocks.max.sm,fan.speed,memory.total,memory.used,power.draw,power.limit,temperature.gpu,utilization.gpu,utilization.memory`
+When `NVIDIA_SMI_EXPORTER_SOURCE` == `csv`:
+
+- `NVIDIA_SMI_EXPORTER_QUERY` - comma-separated list to query parameters from nvidia-smi, default: `clocks.current.graphics,clocks.current.memory,clocks.current.sm,clocks.current.video,clocks.max.graphics,clocks.max.memory,clocks.max.sm,fan.speed,memory.total,memory.used,power.draw,power.limit,temperature.gpu,utilization.gpu,utilization.memory`
