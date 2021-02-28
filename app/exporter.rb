@@ -1,10 +1,12 @@
-require 'sinatra'
+require 'sinatra/base'
+require_relative 'n_vidia_smi'
+require_relative 'n_vidia_smi_xml'
 
 class Exporter < Sinatra::Base
   set :traps, false
   set :server, :puma
-  set :port, ENV['NVIDIA_SMI_EXPORTER_PORT'].to_i
-  set :bind, ENV['NVIDIA_SMI_EXPORTER_HOST']
+  set :port, proc { ENV['NVIDIA_SMI_EXPORTER_PORT'].to_i }
+  set :bind, proc { ENV['NVIDIA_SMI_EXPORTER_HOST'] }
   set :show_exceptions, false
 
   not_found do
@@ -30,7 +32,7 @@ class Exporter < Sinatra::Base
           binary_path: ENV['NVIDIA_SMI_EXPORTER_BINARY'],
           name_prefix: ENV['NVIDIA_SMI_EXPORTER_NAME_PREFIX'])
       else
-        raise("Unknown NVIDIA_SMI_EXPORTER_SOURCE=`#{ENV['NVIDIA_SMI_EXPORTER_SOURCE']}'")
+        raise("Unknown value `#{ENV['NVIDIA_SMI_EXPORTER_SOURCE']}' in NVIDIA_SMI_EXPORTER_SOURCE")
       end
 
     response = processor.query
