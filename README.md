@@ -1,4 +1,4 @@
-NVidia SMI Exporter
+Nvidia SMI Exporter
 ---------------------
 Another one nvidia-smi data exporter for Prometheus.
 
