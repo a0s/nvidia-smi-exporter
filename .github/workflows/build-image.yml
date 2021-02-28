@@ -3,8 +3,30 @@ on:
   release:
     types: [published]
 jobs:
-  buildx:
+  build:
+    name: rspec
     runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+
+      - name: Run bundle install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Build and test with rspec
+        env:
+          RAILS_ENV: test
+        run: bundle exec rspec
+
+  buildx:
+    name: build and push image
+    runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
