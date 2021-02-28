@@ -19,4 +19,4 @@ RUN \
     && rm -rf /var/lib/apt/lists/* \
     && bundle install --deployment --without test
 
-CMD ["bundle", "exec", "ruby", "bin/application.rb", "1>&2"]
+CMD ["bundle", "exec", "ruby", "app/application.rb", "1>&2"]
