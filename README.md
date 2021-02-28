@@ -151,7 +151,8 @@ Run in Docker
       -p 9454:9454 nvidia-smi-exporter
     ```
 
-## Runtime parameters
+Parameters
+==================
 
 There are several environment variables to setting runtime parameters:
 
