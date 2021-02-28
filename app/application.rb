@@ -6,6 +6,7 @@ class Application
   def initialize
     Thread.abort_on_exception = true
 
+    ENV['NVIDIA_SMI_EXPORTER_MODE'] ||= 'xml'
     ENV['NVIDIA_SMI_EXPORTER_PORT'] ||= '9454'
     ENV['NVIDIA_SMI_EXPORTER_HOST'] ||= '0.0.0.0'
     ENV['NVIDIA_SMI_EXPORTER_NAME_PREFIX'] ||= 'nvidia_smi_'

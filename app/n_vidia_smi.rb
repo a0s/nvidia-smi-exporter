@@ -11,7 +11,7 @@ class NVidiaSMI
 
   def query(query_list = @query_list)
     unless @binary_path.present?
-      fail("Don't know path to nvidia-smi binary")
+      raise("Don't know path to nvidia-smi binary")
     end
 
     # Move uuid to first position
@@ -21,8 +21,7 @@ class NVidiaSMI
     stdout_and_stderr_str, status = Open3.capture2e(@binary_path, '--format=csv', "--query-gpu=#{query_string}")
 
     unless status.exitstatus.zero?
-      puts stdout_and_stderr_str
-      return
+      raise(stdout_and_stderr_str)
     end
 
     stdout_and_stderr_str
@@ -38,7 +37,7 @@ class NVidiaSMI
     return result if line_arrs.blank?
 
     headers.each_with_index do |column, index|
-      fail('First column is not uuid') if index.zero? && column != 'uuid'
+      raise('First column is not uuid') if index.zero? && column != 'uuid'
       next if index.zero?
 
       case column
@@ -63,7 +62,7 @@ class NVidiaSMI
         unit = ''
         name_postfix = ''
       else
-        fail("Unknown what to do with string `#{column}'")
+        raise("Unknown what to do with string `#{column}'")
       end
       name = $1.strip.downcase.gsub('.', '_')
       if column.include?('temperature') && name_postfix.blank?

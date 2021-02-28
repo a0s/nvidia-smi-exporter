@@ -14,6 +14,7 @@ COPY \
     application.rb \
     exporter.rb \
     n_vidia_smi.rb \
+    n_vidia_smi_xml.rb \
     ./
 
 RUN \
