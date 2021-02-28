@@ -1,104 +1,8 @@
 RSpec.describe NVidiaSMI_XML do
-  subject { described_class.new(binary_path: nil, name_prefix: nil) }
+  subject { described_class.new(binary_path: nil, name_prefix: 'rspec_') }
 
-  describe 'pipeline' do
-    subject { described_class.new(binary_path: nil, name_prefix: 'nvidia_smi_') }
-    let(:nvidia_smi_4) do
-      <<~EOS
-        rspec_driver_version 418.56
-        rspec_cuda_version 10.1
-        rspec_attached_gpus 1
-        rspec_product_name{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Quadro P2000
-        rspec_product_brand{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Quadro
-        rspec_display_mode{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Disabled
-        rspec_display_active{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Disabled
-        rspec_persistence_mode{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Disabled
-        rspec_accounting_mode{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Disabled
-        rspec_accounting_mode_buffer_size{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 4000
-        rspec_serial{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0324217004816
-        rspec_uuid{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} GPU-1ffe36ef-ac55-60ad-f9cf-623871e7736d
-        rspec_minor_number{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
-        rspec_vbios_version{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 86.06.3F.00.0D
-        rspec_multigpu_board{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} No
-        rspec_board_id{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0x400
-        rspec_gpu_part_number{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 900-5G410-1700-000
-        rspec_inforom_version_img_version{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} G410.0502.00.02
-        rspec_inforom_version_oem_object{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1.1
-        rspec_gpu_virtualization_mode_virtualization_mode{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} None
-        rspec_pci_pci_bus{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 04
-        rspec_pci_pci_device{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 00
-        rspec_pci_pci_domain{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0000
-        rspec_pci_pci_device_id{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1C3010DE
-        rspec_pci_pci_bus_id{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 00000000:04:00.0
-        rspec_pci_pci_sub_system_id{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 11B310DE
-        rspec_pci_pci_gpu_link_info_pcie_gen_max_link_gen{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 3
-        rspec_pci_pci_gpu_link_info_pcie_gen_current_link_gen{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 3
-        rspec_pci_pci_gpu_link_info_link_widths_max_link_width{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 16x
-        rspec_pci_pci_gpu_link_info_link_widths_current_link_width{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 16x
-        rspec_pci_replay_counter{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
-        rspec_pci_replay_rollover_counter{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
-        rspec_pci_tx_util_bytes_per_second{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
-        rspec_pci_rx_util_bytes_per_second{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
-        rspec_fan_speed_ratio{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0.61
-        rspec_performance_state{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} P0
-        rspec_clocks_throttle_reasons_clocks_throttle_reason_gpu_idle{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
-        rspec_clocks_throttle_reasons_clocks_throttle_reason_applications_clocks_setting{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
-        rspec_clocks_throttle_reasons_clocks_throttle_reason_sw_power_cap{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
-        rspec_clocks_throttle_reasons_clocks_throttle_reason_hw_slowdown{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
-        rspec_clocks_throttle_reasons_clocks_throttle_reason_hw_thermal_slowdown{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
-        rspec_clocks_throttle_reasons_clocks_throttle_reason_hw_power_brake_slowdown{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
-        rspec_clocks_throttle_reasons_clocks_throttle_reason_sync_boost{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
-        rspec_clocks_throttle_reasons_clocks_throttle_reason_sw_thermal_slowdown{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
-        rspec_clocks_throttle_reasons_clocks_throttle_reason_display_clocks_setting{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
-        rspec_fb_memory_usage_total_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 5304745984
-        rspec_fb_memory_usage_used_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 334495744
-        rspec_fb_memory_usage_free_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 4970250240
-        rspec_bar1_memory_usage_total_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 268435456
-        rspec_bar1_memory_usage_used_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 2097152
-        rspec_bar1_memory_usage_free_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 266338304
-        rspec_compute_mode{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Default
-        rspec_utilization_gpu_util_ratio{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0.0
-        rspec_utilization_memory_util_ratio{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0.0
-        rspec_utilization_encoder_util_ratio{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0.0
-        rspec_utilization_decoder_util_ratio{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0.0
-        rspec_encoder_stats_session_count{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
-        rspec_encoder_stats_average_fps{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
-        rspec_encoder_stats_average_latency{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
-        rspec_fbc_stats_session_count{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
-        rspec_fbc_stats_average_fps{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
-        rspec_fbc_stats_average_latency{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
-        rspec_temperature_gpu_temp_celsius{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 62.0
-        rspec_temperature_gpu_temp_max_threshold_celsius{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 104.0
-        rspec_temperature_gpu_temp_slow_threshold_celsius{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 101.0
-        rspec_power_readings_power_state{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} P0
-        rspec_power_readings_power_management{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Supported
-        rspec_power_readings_power_draw_watts{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 20.32
-        rspec_power_readings_power_limit_watts{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 75.0
-        rspec_power_readings_default_power_limit_watts{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 75.0
-        rspec_power_readings_enforced_power_limit_watts{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 75.0
-        rspec_power_readings_min_power_limit_watts{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 75.0
-        rspec_power_readings_max_power_limit_watts{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 75.0
-        rspec_clocks_graphics_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1215000000.0
-        rspec_clocks_sm_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1215000000.0
-        rspec_clocks_mem_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 3499000000.0
-        rspec_clocks_video_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1101000000.0
-        rspec_applications_clocks_graphics_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1075000000.0
-        rspec_applications_clocks_mem_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 3504000000.0
-        rspec_default_applications_clocks_graphics_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1075000000.0
-        rspec_default_applications_clocks_mem_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 3504000000.0
-        rspec_max_clocks_graphics_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1721000000.0
-        rspec_max_clocks_sm_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1721000000.0
-        rspec_max_clocks_mem_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 3504000000.0
-        rspec_max_clocks_video_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1556000000.0
-        rspec_max_customer_boost_clocks_graphics_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1721000000.0
-        rspec_processes_process_info_pid{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 7134
-        rspec_processes_process_info_type{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} C
-        rspec_processes_process_info_process_name{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} /usr/lib/plexmediaserver/Plex Transcoder
-        rspec_processes_process_info_used_memory_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 324009984
-      EOS
-    end
-
-    let(:nvidia_smi_3) do
+  context 'nvidia-smi-3.xml' do
+    let(:result) do
       <<~EOS
         rspec_driver_version 460.27.04
         rspec_cuda_version 11.2
@@ -267,14 +171,110 @@ RSpec.describe NVidiaSMI_XML do
     end
 
     it do
-      hash = subject.parse(fixture_load('nvidia-smi-4.xml'))
-      expect(subject.format_prometheus(hash)).to eq(nvidia_smi_4)
+      hash = subject.parse(fixture_load('nvidia-smi-3.xml'))
+      expect(subject.format_prometheus(hash)).to eq(result)
+    end
+  end
+
+  context 'nvidia-smi-4.xml' do
+    let(:result) do
+      <<~EOS
+        rspec_driver_version 418.56
+        rspec_cuda_version 10.1
+        rspec_attached_gpus 1
+        rspec_product_name{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Quadro P2000
+        rspec_product_brand{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Quadro
+        rspec_display_mode{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Disabled
+        rspec_display_active{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Disabled
+        rspec_persistence_mode{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Disabled
+        rspec_accounting_mode{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Disabled
+        rspec_accounting_mode_buffer_size{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 4000
+        rspec_serial{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0324217004816
+        rspec_uuid{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} GPU-1ffe36ef-ac55-60ad-f9cf-623871e7736d
+        rspec_minor_number{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
+        rspec_vbios_version{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 86.06.3F.00.0D
+        rspec_multigpu_board{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} No
+        rspec_board_id{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0x400
+        rspec_gpu_part_number{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 900-5G410-1700-000
+        rspec_inforom_version_img_version{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} G410.0502.00.02
+        rspec_inforom_version_oem_object{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1.1
+        rspec_gpu_virtualization_mode_virtualization_mode{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} None
+        rspec_pci_pci_bus{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 04
+        rspec_pci_pci_device{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 00
+        rspec_pci_pci_domain{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0000
+        rspec_pci_pci_device_id{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1C3010DE
+        rspec_pci_pci_bus_id{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 00000000:04:00.0
+        rspec_pci_pci_sub_system_id{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 11B310DE
+        rspec_pci_pci_gpu_link_info_pcie_gen_max_link_gen{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 3
+        rspec_pci_pci_gpu_link_info_pcie_gen_current_link_gen{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 3
+        rspec_pci_pci_gpu_link_info_link_widths_max_link_width{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 16x
+        rspec_pci_pci_gpu_link_info_link_widths_current_link_width{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 16x
+        rspec_pci_replay_counter{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
+        rspec_pci_replay_rollover_counter{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
+        rspec_pci_tx_util_bytes_per_second{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
+        rspec_pci_rx_util_bytes_per_second{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
+        rspec_fan_speed_ratio{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0.61
+        rspec_performance_state{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} P0
+        rspec_clocks_throttle_reasons_clocks_throttle_reason_gpu_idle{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
+        rspec_clocks_throttle_reasons_clocks_throttle_reason_applications_clocks_setting{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
+        rspec_clocks_throttle_reasons_clocks_throttle_reason_sw_power_cap{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
+        rspec_clocks_throttle_reasons_clocks_throttle_reason_hw_slowdown{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
+        rspec_clocks_throttle_reasons_clocks_throttle_reason_hw_thermal_slowdown{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
+        rspec_clocks_throttle_reasons_clocks_throttle_reason_hw_power_brake_slowdown{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
+        rspec_clocks_throttle_reasons_clocks_throttle_reason_sync_boost{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
+        rspec_clocks_throttle_reasons_clocks_throttle_reason_sw_thermal_slowdown{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
+        rspec_clocks_throttle_reasons_clocks_throttle_reason_display_clocks_setting{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Not Active
+        rspec_fb_memory_usage_total_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 5304745984
+        rspec_fb_memory_usage_used_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 334495744
+        rspec_fb_memory_usage_free_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 4970250240
+        rspec_bar1_memory_usage_total_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 268435456
+        rspec_bar1_memory_usage_used_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 2097152
+        rspec_bar1_memory_usage_free_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 266338304
+        rspec_compute_mode{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Default
+        rspec_utilization_gpu_util_ratio{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0.0
+        rspec_utilization_memory_util_ratio{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0.0
+        rspec_utilization_encoder_util_ratio{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0.0
+        rspec_utilization_decoder_util_ratio{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0.0
+        rspec_encoder_stats_session_count{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
+        rspec_encoder_stats_average_fps{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
+        rspec_encoder_stats_average_latency{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
+        rspec_fbc_stats_session_count{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
+        rspec_fbc_stats_average_fps{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
+        rspec_fbc_stats_average_latency{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
+        rspec_temperature_gpu_temp_celsius{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 62.0
+        rspec_temperature_gpu_temp_max_threshold_celsius{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 104.0
+        rspec_temperature_gpu_temp_slow_threshold_celsius{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 101.0
+        rspec_power_readings_power_state{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} P0
+        rspec_power_readings_power_management{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} Supported
+        rspec_power_readings_power_draw_watts{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 20.32
+        rspec_power_readings_power_limit_watts{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 75.0
+        rspec_power_readings_default_power_limit_watts{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 75.0
+        rspec_power_readings_enforced_power_limit_watts{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 75.0
+        rspec_power_readings_min_power_limit_watts{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 75.0
+        rspec_power_readings_max_power_limit_watts{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 75.0
+        rspec_clocks_graphics_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1215000000.0
+        rspec_clocks_sm_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1215000000.0
+        rspec_clocks_mem_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 3499000000.0
+        rspec_clocks_video_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1101000000.0
+        rspec_applications_clocks_graphics_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1075000000.0
+        rspec_applications_clocks_mem_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 3504000000.0
+        rspec_default_applications_clocks_graphics_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1075000000.0
+        rspec_default_applications_clocks_mem_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 3504000000.0
+        rspec_max_clocks_graphics_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1721000000.0
+        rspec_max_clocks_sm_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1721000000.0
+        rspec_max_clocks_mem_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 3504000000.0
+        rspec_max_clocks_video_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1556000000.0
+        rspec_max_customer_boost_clocks_graphics_clock_hz{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 1721000000.0
+        rspec_processes_process_info_pid{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 7134
+        rspec_processes_process_info_type{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} C
+        rspec_processes_process_info_process_name{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} /usr/lib/plexmediaserver/Plex Transcoder
+        rspec_processes_process_info_used_memory_bytes{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 324009984
+      EOS
     end
 
     it do
-      hash = subject.parse(fixture_load('nvidia-smi-3.xml'))
-      # expect(subject.format_prometheus(hash)).to eq(nvidia_smi_3)
-      puts subject.format_prometheus(hash)
+      hash = subject.parse(fixture_load('nvidia-smi-4.xml'))
+      expect(subject.format_prometheus(hash)).to eq(result)
     end
   end
 end
