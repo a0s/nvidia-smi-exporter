@@ -133,6 +133,8 @@ Run in Docker
     ```shell
     > docker build . --tag nvidia-smi-exporter --build-arg NVIDIA_VERSION=460.27.04-0ubuntu1
     ```
+    
+   All available versions can be found [in the Cuda repository](https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/)
 
 3) Run with `--privileged` flag (not recommended due to security)
     ```shell
