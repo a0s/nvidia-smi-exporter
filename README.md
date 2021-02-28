@@ -116,28 +116,38 @@ In XML mode (see below) the exporter skips all implicit arrays like this:
 Also, it skips all empty and "N/A" values (and their keys accordingly).
 
 
-How to run
-==========
+Run in Docker
+=============
 
-Build image 
-```bash
-docker build --tag nvidia-smi-exporter .
-```
+`nvidia-smi` require using the same versions of packages (`libnvidia-compute-460` and `nvidia-utils-460`) inside container and the nvidia driver on the host.
 
-Run container
-```bash
-docker run --rm --privileged -p 9454:9454 nvidia-smi-exporter
-```
+1) Get driver version on the host:
 
-If case you don't want to use `--privileged` option you should use `--device` option to expose `/dev/nvidiactl` and `/dev/nvidia0`, `/dev/nvidia1`, etc (all GPU what you need to monitoring) into docker container
+    ```shell
+    > dpkg --list | grep nvidia-driver-460
+    ii  nvidia-driver-460                    460.27.04-0ubuntu1                    amd64        NVIDIA driver metapackage
+    ```
 
-```bash
-docker run --rm \
-  --device /dev/nvidiactl:/dev/nvidiactl \
-  --device /dev/nvidia0:/dev/nvidia0 \
-  --device /dev/nvidia1:/dev/nvidia1 \
-  -p 9454:9454 nvidia-smi-exporter
-```
+2) Build container with appropriate version of driver:
+
+    ```shell
+    > docker build . --tag nvidia-smi-exporter --build-arg NVIDIA_VERSION=460.27.04-0ubuntu1
+    ```
+
+3) Run with `--privileged` flag (not recommended due to security)
+    ```shell
+    > docker run --rm --privileged -p 9454:9454 nvidia-smi-exporter
+    ```
+   
+    or enumerating (map inside container) all devices explicitly
+
+    ```shell
+    > docker run --rm \
+      --device /dev/nvidiactl:/dev/nvidiactl \
+      --device /dev/nvidia0:/dev/nvidia0 \
+      --device /dev/nvidia1:/dev/nvidia1 \
+      -p 9454:9454 nvidia-smi-exporter
+    ```
 
 ## Runtime parameters
 
