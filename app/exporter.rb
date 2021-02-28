@@ -19,7 +19,7 @@ class Exporter < Sinatra::Base
     content_type 'text/plain'
 
     processor =
-      case ENV['NVIDIA_SMI_EXPORTER_MODE']
+      case ENV['NVIDIA_SMI_EXPORTER_SOURCE']
       when 'csv'
         NVidiaSMI.new(
           binary_path: ENV['NVIDIA_SMI_EXPORTER_BINARY'],
@@ -30,7 +30,7 @@ class Exporter < Sinatra::Base
           binary_path: ENV['NVIDIA_SMI_EXPORTER_BINARY'],
           name_prefix: ENV['NVIDIA_SMI_EXPORTER_NAME_PREFIX'])
       else
-        raise("Unknown NVIDIA_SMI_EXPORTER_MODE=`#{ENV['NVIDIA_SMI_EXPORTER_MODE']}'")
+        raise("Unknown NVIDIA_SMI_EXPORTER_SOURCE=`#{ENV['NVIDIA_SMI_EXPORTER_SOURCE']}'")
       end
 
     response = processor.query
