@@ -1,6 +1,6 @@
 NVidia SMI Exporter
 ---------------------
-Another one nvidia-smi data exporter for Prometheus. Now with GPU UUIDs.
+Another one nvidia-smi data exporter for Prometheus.
 
 <img src="https://user-images.githubusercontent.com/418868/41509784-db9ee64a-7261-11e8-9bbb-556967876649.jpg" width="900">
 
@@ -119,7 +119,7 @@ Also, it skips all empty and "N/A" values (and their keys accordingly).
 Run in Docker
 =============
 
-`nvidia-smi` require using the same versions of packages (`libnvidia-compute-460` and `nvidia-utils-460`) inside container and the nvidia driver on the host.
+`nvidia-smi` requires using the same versions of packages (`libnvidia-compute-460` and `nvidia-utils-460`) inside the container and outside (on the host).
 
 1) Get driver version on the host:
 
