@@ -7,15 +7,7 @@ ENV NVIDIA_PUB_KEY "https://developer.download.nvidia.com/compute/cuda/repos/ubu
 ENV NVIDIA_REPO "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64 /"
 
 WORKDIR /app
-
-COPY \
-    Gemfile \
-    Gemfile.lock \
-    application.rb \
-    exporter.rb \
-    n_vidia_smi.rb \
-    n_vidia_smi_xml.rb \
-    ./
+COPY . /app
 
 RUN \
     apt-get update \
@@ -27,4 +19,4 @@ RUN \
     && rm -rf /var/lib/apt/lists/* \
     && bundle install --deployment --without test
 
-CMD ["bundle", "exec", "ruby", "application.rb", "1>&2"]
+CMD ["bundle", "exec", "ruby", "bin/application.rb", "1>&2"]
