@@ -4,8 +4,6 @@ RSpec.describe NVidiaSMI_XML do
   context 'nvidia-smi-3.xml' do
     let(:result) do
       <<~EOS
-        rspec_driver_version 460.27.04
-        rspec_cuda_version 11.2
         rspec_attached_gpus 2
         rspec_display_mode{uuid="683c6e09-3969-31a5-b7ca-cc88252b7fce"} 1
         rspec_display_mode{uuid="90e3dab0-b59d-8bf6-d909-d4fab8d2f29b"} 0
@@ -153,8 +151,6 @@ RSpec.describe NVidiaSMI_XML do
   context 'nvidia-smi-4.xml' do
     let(:result) do
       <<~EOS
-        rspec_driver_version 418.56
-        rspec_cuda_version 10.1
         rspec_attached_gpus 1
         rspec_display_mode{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0
         rspec_display_active{uuid="1ffe36ef-ac55-60ad-f9cf-623871e7736d"} 0

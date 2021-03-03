@@ -27,16 +27,11 @@ class NVidiaSMI_XML
     doc = Nokogiri::XML(str)
     output = {}
 
-    if (nodes = doc.xpath('/nvidia_smi_log/driver_version/text()')).size == 1
-      output['driver_version'] = { {} => nodes[0].content.strip }
-    end
-
-    if (nodes = doc.xpath('/nvidia_smi_log/cuda_version/text()')).size == 1
-      output['cuda_version'] = { {} => nodes[0].content.strip }
-    end
-
     if (nodes = doc.xpath('/nvidia_smi_log/attached_gpus/text()')).size == 1
-      output['attached_gpus'] = { {} => nodes[0].content.strip }
+      path, data = 'attached_gpus', nodes[0].content.strip
+      if (path, data = normalize_data(path, data))
+        output[path] = { {} => data }
+      end
     end
 
     # traverse every node in every gpu branch
