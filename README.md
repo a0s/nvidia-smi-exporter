@@ -107,7 +107,7 @@ Prometheus is [not supporting](https://github.com/prometheus/prometheus/issues/2
    - `1x`, `2x`, `4x`, `8x`, `16x`, `32x` (pci lines) will convert to 1,2,4,8,16,32
    - `Default`, `Exclusive_Thread`, `Prohibited`, `Exclusive_Process` (_compute_mode) will convert to 0..3
 
-Other not an integer and not float strings will eliminate.
+Other not integer/float strings will eliminate.
 
 Run in Docker
 =============
