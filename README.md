@@ -115,6 +115,14 @@ In XML mode (see below) the exporter skips all implicit arrays like this:
 
 Also, it skips all empty and "N/A" values (and their keys accordingly).
 
+Prometheus is [not supporting](https://github.com/prometheus/prometheus/issues/2227) string values, thus exporter converts some strings to numbers:
+   - `Disabled`, `Not Active`, `No`, `Not Supported` and `Unsupported` will convert to 0
+   - `Enabled`, `Active`, `Yes`, `Supported` will convert to 1
+   - `P0`..`P15` will convert to 0..15
+   - `1x`, `2x`, `4x`, `8x`, `16x`, `32x` (pci lines) will convert to 1,2,4,8,16,32
+   - `Default`, `Exclusive_Thread`, `Prohibited`, `Exclusive_Process` (_compute_mode) will convert to 0..3
+
+Other not an integer and not float strings will eliminate.
 
 Run in Docker
 =============

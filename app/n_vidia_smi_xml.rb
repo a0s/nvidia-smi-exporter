@@ -69,8 +69,10 @@ class NVidiaSMI_XML
           # /nvidia_smi_log/gpu[2]/processes/process_info[1]/used_memory <= 5 MiB
           if local_path !~ /\[\d+\]/
             local_path, data = normalize_data(local_path, data)
-            output[local_path] ||= {}
-            output[local_path][{ uuid: uuid }] = data
+            unless local_path.nil?
+              output[local_path] ||= {}
+              output[local_path][{ uuid: uuid }] = data
+            end
           end
         end
       end
@@ -135,8 +137,31 @@ class NVidiaSMI_XML
     when /^(#{num})\sGB\/s$/
       return ["#{path}_bytes_per_second", ($1.to_f * 1024 * 1024 * 1024).to_i]
 
+    when /^P(\d{1,2})$/
+      return [path, $1.to_i]
+
+    when 'Disabled', 'Not Active', 'No', 'Not Supported', 'Unsupported'
+      return [path, 0]
+    when 'Enabled', 'Active', 'Yes', 'Supported'
+      return [path, 1]
+    when '1x', '2x', '4x', '8x', '16x', '32x'
+      return [path, data.to_i]
+
+      # compute_mode  = 0/Default, 1/Exclusive_Thread, 2/Prohibited, 3/Exclusive_Process
+
     else
-      return [path, data]
+      case path
+      when /compute_mode$/
+        h = { 'Default' => 0, 'Exclusive_Thread' => 1, 'Prohibited' => 2, 'Exclusive_Process' => 3 }
+        return nil unless h.key?(data)
+        return [path, h[data]]
+
+      else
+        return [path, data] if data.to_f.to_s == data
+        return [path, data] if data.to_i.to_s == data
+
+        return nil
+      end
     end
   end
 
